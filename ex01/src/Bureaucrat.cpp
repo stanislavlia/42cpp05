@@ -30,19 +30,6 @@ Bureaucrat::~Bureaucrat()
 
 };
 
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
-{
-    if (other._grade < 1)
-        throw Bureaucrat::GradeTooHighException();
-    if (other._grade > 150)
-        throw Bureaucrat::GradeTooLowException();
-
-    //We can copy only grade
-    _grade = other._grade;
-    return *this;
-};
-
-
 
 const std::string& Bureaucrat::getName() const
 {
@@ -86,4 +73,12 @@ std::ostream& operator<<(std::ostream& o, const Bureaucrat& obj)
 {
     o << obj.getName() << ", bureaucrat grade " << obj.getGrade() << "." << std::endl;
     return o;
+};
+
+
+//NEW method
+void Bureaucrat::signForm(const std::string& formname, unsigned int grade_to_sign) const
+{
+    if (_grade < grade_to_sign)
+        std::cout << _name << " signed " << formname << std::endl;
 };
