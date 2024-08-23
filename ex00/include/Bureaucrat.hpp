@@ -26,12 +26,12 @@ public:
     // Exception classes
     class GradeTooHighException : public std::exception {
     public:
-        const char* what() const throw();  // Use 'throw()' for C++98 compatibility
+        const char* what() const throw();  // throw() guarantees no exception raised in func
     };
 
     class GradeTooLowException : public std::exception {
     public:
-        const char* what() const throw();  // Use 'throw()' for C++98 compatibility
+        const char* what() const throw();  // throw() guarantees no exception raised in func
     };
 };
 

@@ -42,7 +42,7 @@ int main()
     catch (const Bureaucrat::GradeTooHighException& e)
     {
         // Handle the exception
-        std::cerr << "Got Exception: ";
+        std::cerr << "Got RangeException: ";
         std::cerr << e.what() << std::endl;
     }
 
@@ -52,15 +52,12 @@ int main()
         Bureaucrat wrong("WrongMan", 900);
         //Bureaucrat wrong("WrongMan2", 0);
     }
-    catch (const Bureaucrat::GradeTooLowException& e)
+    catch (const std::exception& e) //specifing base exception, we can catch any exception
     {
-        std::cerr << "Make sure to create object within grade range [0, 150]!\n";
+        std::cerr << "Some exception occured within block! Check it out:\n";
+        std::cerr << e.what();
     }
-    catch (const Bureaucrat::GradeTooHighException& e)
-    {
-        std::cerr << "Make sure to create object within grade range [0, 150]!\n";
-    };
-
+    
 
     return 0;
 };
