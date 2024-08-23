@@ -1,7 +1,11 @@
 #ifndef FORM_HPP
 # define FORM_HPP
 
-#include "Bureaucrat.hpp"
+#include <iostream>
+#include <string>
+
+class Bureaucrat; //to resolve circular dependency
+
 
 class Form
 {
@@ -23,7 +27,7 @@ class Form
         unsigned int getGradetoExec() const;
         const std::string& getFormName() const;
         bool         isSigned() const;
-        void         beSigned(Bureaucrat& bur);
+        void         beSigned(const Bureaucrat& bur);
 
     // Exception classes for Form
     class GradeTooHighException : public std::exception {

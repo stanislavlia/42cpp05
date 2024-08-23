@@ -77,8 +77,16 @@ std::ostream& operator<<(std::ostream& o, const Bureaucrat& obj)
 
 
 //NEW method
-void Bureaucrat::signForm(const std::string& formname, unsigned int grade_to_sign) const
+void Bureaucrat::signForm(Form& form)
 {
-    if (_grade < grade_to_sign)
-        std::cout << _name << " signed " << formname << std::endl;
+    try
+    {
+        form.beSigned(*this);
+        std::cout << _name << " signed " << form.getFormName() << std::endl;
+    }
+    catch(const Form::GradeTooLowException& e)
+    {
+        std::cout << this->getName() << " couln't sign because " << e.what() << std::endl;
+    }
+    
 };

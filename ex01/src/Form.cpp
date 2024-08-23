@@ -1,5 +1,5 @@
 #include "Form.hpp"
-
+#include "Bureaucrat.hpp"
 
 //===============CONSTRUCTORS======================
 Form::Form() : _name("DefaultFormA1"), _is_signed(false), _grade_to_sign(150), _grade_to_execute(150)
@@ -40,6 +40,8 @@ Form&  Form::operator=(const Form& other)
     _is_signed = other._is_signed;
     _grade_to_sign = other._grade_to_sign;
     _grade_to_execute = other._grade_to_execute;
+
+    return *this;
 };
 
 Form::~Form()
@@ -75,17 +77,27 @@ std::ostream& operator<<(std::ostream& o, const Form& obj)
     o << "SIGNED: " << obj.isSigned() << std::endl;
     o << "Minimal Grade to Sign: " << obj.getGradetoSign() << std::endl;
     o << "Minimal Grade to Execute: " << obj.getGradetoSign() << std::endl;
+
+    return o;
 };
 
 
 //=================FORM EXCEPTIONS==========================
 const char* Form::GradeTooHighException::what() const throw()
 {
-    return "Form Exception: both Grade-to-Sign and Grade-to-Execute must be 1 or below!\n";
+    return "Form Exception: Grade TOO HIGH!\n";
 };
 
 const char* Form::GradeTooLowException::what() const throw()
 {
-    return "Form Exception: both Grade to sign and Grade to execute must be 150 or above!\n";
+    return "Form Exception: Grade TOO LOW!!\n";
 };
 
+
+void    Form::beSigned(const Bureaucrat& bur)
+{
+    if (bur.getGrade() > _grade_to_sign)
+        throw Form::GradeTooLowException();
+    _is_signed = true;
+
+};
