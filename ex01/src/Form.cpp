@@ -98,6 +98,7 @@ void    Form::beSigned(const Bureaucrat& bur)
 {
     if (bur.getGrade() > _grade_to_sign)
         throw Form::GradeTooLowException();
+    
     _is_signed = true;
 
 };
