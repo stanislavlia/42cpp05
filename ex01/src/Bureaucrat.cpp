@@ -25,6 +25,11 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(oth
         throw Bureaucrat::GradeTooLowException();
 };
 
+Bureaucrat::~Bureaucrat()
+{
+
+};
+
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 {
     if (other._grade < 1)
@@ -36,12 +41,6 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
     _grade = other._grade;
     return *this;
 };
-
-Bureaucrat::~Bureaucrat()
-{
-
-};
-
 
 
 
