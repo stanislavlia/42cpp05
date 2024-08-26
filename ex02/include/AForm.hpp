@@ -27,7 +27,11 @@ class AForm
         bool isSigned() const;
         void beSigned(const Bureaucrat& bur);
 
-        // Exception classes for AForm
+
+        //to implement in derived classes:
+        virtual void    execute(const Bureaucrat& executor) const = 0;
+
+        //==========EXCEPTIONS==============
         class GradeTooHighException : public std::exception {
         public:
             const char* what() const throw();  // throw() guarantees no exception raised in func
