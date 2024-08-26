@@ -73,16 +73,31 @@ std::ostream& operator<<(std::ostream& o, const Bureaucrat& obj)
     return o;
 }
 
-//====================SIGN FORM IMPLEMENTATION===============================
-void Bureaucrat::signForm(AForm& form)  // Updated to use AForm
+//====================FORM INTERACTION IMPLEMENTATION===============================
+void Bureaucrat::signForm(AForm& form)  
 {
     try
     {
         form.beSigned(*this);
         std::cout << _name << " signed " << form.getFormName() << std::endl;
     }
-    catch(const AForm::GradeTooLowException& e)  // Updated to use AForm::GradeTooLowException
+    catch(const AForm::GradeTooLowException& e)  
     {
         std::cout << this->getName() << " couldn't sign because " << e.what();
     }
 }
+
+void Bureaucrat::executeForm(const AForm& form)
+{
+    try
+    {
+        form.execute(*this);
+        std::cout << getName() << " executed " << form.getFormName() << std::endl;
+    }
+    catch (const std::exception& e)
+    {
+        std::cout << this->getName() << " couldn't execute the form " 
+        << form.getFormName() << "for the reason: "  << e.what();
+    };
+};
+

@@ -41,6 +41,11 @@ class AForm
         public:
             const char* what() const throw();  // throw() guarantees no exception raised in func
         };
+
+        class NotSignedException : public std::exception {
+        public:
+            const char* what() const throw();  // throw() guarantees no exception raised in func
+        };
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& form);
